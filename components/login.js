@@ -2,8 +2,18 @@ import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 import Card from './card';
 import CardSection from './card.section';
+import Input from './input';
 
 export default class Login extends Component {
+
+    onEmailChange(text) {
+        this.props.email = text;
+    }
+
+    onPasswordChange(text) {
+        this.props.password = text;
+    }
+
     componentDidMount() {
         this.props.titleBarApi("", "Please Login", "");
     }
@@ -13,10 +23,21 @@ export default class Login extends Component {
             return (
                 <Card>
                     <CardSection>
-                        <Text>Email</Text>
+                        <Input
+                            label="Email"
+                            placeholder="email@gmail.com"
+                            onChangeText={this.onEmailChange.bind(this)}
+                            value={this.props.email}
+                        />
                     </CardSection>
                     <CardSection>
-                        <Text>Password</Text>
+                        <Input
+                            secureTextEntry
+                            label="password"
+                            placeholder="password"
+                            onChangeText={this.onPasswordChange.bind(this)}
+                            value={this.props.password}
+                        />
                     </CardSection>
                     <CardSection>
                         <Text>Login Btn</Text>
