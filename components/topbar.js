@@ -7,7 +7,7 @@ export default class Topbar extends Component {
             <View style={styles.container}>
                 <Text>{this.props.leftText}</Text>
                 <Text style={styles.textStyle}>{this.props.title}</Text>
-                <Text>{this.props.rightText}</Text>
+                <Text style={styles.textStyle}>{this.props.rightText}</Text>
             </View>
         );
     }
@@ -15,8 +15,9 @@ export default class Topbar extends Component {
 
 const styles = StyleSheet.create({
     container: {
+        flexDirection: "row-reverse",
         backgroundColor: '#F8F8F8',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
         height: 60,
         paddingTop: 15,
@@ -24,7 +25,9 @@ const styles = StyleSheet.create({
         shadowOffset: {width: 0, height: 2},
         shadowOpacity: 0.2,
         elevation: 2,
-        position: 'relative'
+        position: 'relative',
+        paddingLeft: 15,
+        paddingRight: 15
     },
     textStyle: {
         fontSize: 20

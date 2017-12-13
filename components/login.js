@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View} from 'react-native';
+import {View} from 'react-native';
 import Card from './card';
 import CardSection from './card.section';
 import Input from './input';
@@ -7,20 +7,29 @@ import Button from './buttons';
 
 export default class Login extends Component {
 
+    constructor() {
+        super()
+        this.emailAddress = '';
+        this.password = '';
+    }
+
     onEmailChange(text) {
-        this.props.email = text;
+        this.emailAddress = text;
     }
 
     onPasswordChange(text) {
-        this.props.password = text;
+        this.password = text;
     }
 
     onButtonPress() {
-
+        if (this.emailAddress.length > 0 && this.password.length > 0) {
+            this.props.goToMemberList();
+        }
     }
 
     componentDidMount() {
-        this.props.titleBarApi("", "Please Login", "");
+        if (this.props.visible)
+            this.props.titleBarApi("", "Please Login", "");
     }
 
     render() {
@@ -32,7 +41,6 @@ export default class Login extends Component {
                             label="Email"
                             placeholder="email@gmail.com"
                             onChangeText={this.onEmailChange.bind(this)}
-                            value={this.props.email}
                         />
                     </CardSection>
                     <CardSection>
@@ -41,7 +49,6 @@ export default class Login extends Component {
                             label="password"
                             placeholder="password"
                             onChangeText={this.onPasswordChange.bind(this)}
-                            value={this.props.password}
                         />
                     </CardSection>
                     <CardSection>
