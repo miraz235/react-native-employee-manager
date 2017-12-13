@@ -3,6 +3,7 @@ import {Text, View} from 'react-native';
 import Card from './card';
 import CardSection from './card.section';
 import Input from './input';
+import Button from './buttons';
 
 export default class Login extends Component {
 
@@ -12,6 +13,10 @@ export default class Login extends Component {
 
     onPasswordChange(text) {
         this.props.password = text;
+    }
+
+    onButtonPress() {
+
     }
 
     componentDidMount() {
@@ -40,7 +45,9 @@ export default class Login extends Component {
                         />
                     </CardSection>
                     <CardSection>
-                        <Text>Login Btn</Text>
+                        <Button onPress={this.onButtonPress.bind(this)}>
+                            Login
+                        </Button>
                     </CardSection>
                 </Card>
             );
