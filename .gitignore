@@ -27,7 +27,7 @@ project.xcworkspace
 build/
 .idea
 .gradle
-local.properties
+android/local.properties
 *.iml
 
 # node.js
@@ -51,3 +51,5 @@ buck-out/
 */fastlane/report.xml
 */fastlane/Preview.html
 */fastlane/screenshots
+
+package-lock.json
