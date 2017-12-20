@@ -10,6 +10,7 @@ const Input = ({ label, value, onChangeText, placeholder, secureTextEntry }) => 
             autoCorrect={false}
             value={value}
             onChangeText={onChangeText}
+            underlineColorAndroid='transparent'
             style={styles.inputStyle}
         />
     </View>

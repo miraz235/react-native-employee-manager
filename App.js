@@ -9,14 +9,12 @@ import {StyleSheet, View} from "react-native";
 
 import Topbar from "./components/topbar";
 import Login from "./components/login";
-import MemberList from "./components/member-list";
-import MemberDetails from "./components/member-details";
+import Member from "./components/member";
 
 export default class App extends Component {
     state = {
         loginVisible: true,
-        listVisible: false,
-        detailsVisible: false,
+        memberVisible: false,
         titleBarRight: "",
         titleBarTitle: "",
         titleBarLeft: ""
@@ -26,19 +24,17 @@ export default class App extends Component {
          if(this.state.loginVisible){
              return (
                  <Login
-                     visible={this.state.loginVisible}
                      titleBarApi={this.setTitleBar.bind(this)}
-                     goToMemberList={this.goToMemberList.bind(this)}
+                     goToMember={this.goToMember.bind(this)}
                  />
              );
          }
     }
 
-    renderEmployeeList() {
-        if(this.state.listVisible){
+    renderEmployee() {
+        if(this.state.memberVisible){
             return (
-                <MemberList
-                    visible={this.state.listVisible}
+                <Member
                     titleBarApi={this.setTitleBar.bind(this)}
                 />
             );
@@ -49,13 +45,12 @@ export default class App extends Component {
         return (
             <View style={styles.container}>
                 <Topbar
-                    leftText={this.state.titleBarLeft}
+                    left={this.state.titleBarLeft}
                     title={this.state.titleBarTitle}
-                    rightText={this.state.titleBarRight}
+                    right={this.state.titleBarRight}
                 />
                 {this.renderLogin()}
-                {this.renderEmployeeList()}
-                <MemberDetails visible={this.state.detailsVisible}/>
+                {this.renderEmployee()}
             </View>
         );
     }
@@ -68,11 +63,10 @@ export default class App extends Component {
         });
     }
 
-    goToMemberList() {
+    goToMember() {
         this.setState({
             loginVisible: false,
-            listVisible: true,
-            detailsVisible: false
+            memberVisible: true
         });
     }
 }

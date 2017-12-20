@@ -1,17 +1,11 @@
 import React, {Component} from "react";
-import {ListView, View} from "react-native";
+import {ListView, View, Button} from "react-native";
 import MemberListItem from './member.list.item';
 
 export default class MemberList extends Component {
 
     constructor() {
         super();
-        this.employees = [
-            {'name': 'Himel'},
-            {'name': 'Rana'},
-            {'name': 'Shuvro'},
-            {'name': 'Proshad'}
-        ];
     }
 
     componentWillMount() {
@@ -22,29 +16,26 @@ export default class MemberList extends Component {
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         });
-        this.dataSource = ds.cloneWithRows(this.employees);
+        this.dataSource = ds.cloneWithRows(this.props.listData);
     }
 
     componentDidMount() {
-        if (this.props.visible)
-            this.props.titleBarApi("", "Employees", "Add");
+        this.props.titleBarApi("", "Employees", {text:"Add", type: "button", onPress: this.props.goToMemberDetails });
     }
 
     renderRow(employee) {
-        return <MemberListItem employee={employee}/>;
+        return <MemberListItem employee={employee} onRowPress={this.props.goToMemberDetails}/>;
     }
 
     render() {
-        if (this.props.visible) {
-            return (
+        return (
+            <View>
                 <ListView
                     enableEmptySections
                     dataSource={this.dataSource}
-                    renderRow={this.renderRow}
+                    renderRow={this.renderRow.bind(this)}
                 />
-            );
-        } else {
-            return <View/>;
-        }
+            </View>
+        );
     }
 }
